@@ -1,0 +1,3 @@
+analysis,chi_square,degrees_of_freedom,p_value,cramers_v
+gpt_oss — Variation × Safety Label,81.033,14,0.0,0.3604
+qwen — Variation × Safety Label,29.9721,14,0.0077,0.2192

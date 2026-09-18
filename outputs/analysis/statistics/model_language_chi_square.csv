@@ -1,0 +1,3 @@
+analysis,chi_square,degrees_of_freedom,p_value,cramers_v
+gpt_oss — Language × Safety Label,12.183,4,0.016041,0.1397
+qwen — Language × Safety Label,16.0122,4,0.003003,0.1602

@@ -1,0 +1,67 @@
+{
+    "experiment_name": "CLVPI 2048-token run (gpt_oss)",
+    "provider": "groq",
+    "models": {
+        "mock": {
+            "enabled": true
+        },
+        "groq": {
+            "enabled": true,
+            "model": "openai/gpt-oss-20b"
+        },
+        "qwen": {
+            "enabled": false,
+            "model": "Qwen/Qwen3-8B"
+        },
+        "openai": {
+            "enabled": false,
+            "model": "gpt-5-mini"
+        },
+        "gemini": {
+            "enabled": false,
+            "model": "gemini-2.5-flash"
+        }
+    },
+    "dataset": {
+        "path": "data/working_dataset.csv",
+        "encoding": "utf-8"
+    },
+    "generation": {
+        "temperature": 0.0,
+        "max_output_tokens": 2048,
+        "timeout": 60
+    },
+    "runtime": {
+        "retry_attempts": 5,
+        "retry_delay": 2,
+        "save_every_response": true
+    },
+    "outputs": {
+        "raw": "outputs/raw_2048",
+        "evaluated": "outputs/evaluated",
+        "merged": "outputs/merged",
+        "statistics": "outputs/statistics",
+        "figures": "outputs/figures"
+    },
+    "experiments": {
+        "directory": "experiments"
+    },
+    "logging": {
+        "directory": "logs",
+        "level": "INFO"
+    },
+    "benchmark": {
+        "languages": [
+            "en",
+            "hi",
+            "mr"
+        ],
+        "expected_categories": 13,
+        "expected_variations": 8
+    },
+    "_run_note": [
+        "Separate 2048-token experiment. Does NOT overwrite the 512-token run.",
+        "Raw output goes to outputs/raw_2048/ ; the original 512 run stays in outputs/raw/.",
+        "Invoke with: BENCHMARK_CONFIG=config/config_2048_gpt_oss.json python scripts/run_experiment.py"
+    ]
+}

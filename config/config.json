@@ -1,0 +1,108 @@
+{
+    "experiment_name": "Multilingual Safety Benchmark",
+
+    "provider": "groq",
+
+    "models": {
+        "mock": {
+            "enabled": true
+        },
+
+        "groq": {
+            "enabled": true,
+            "model": "qwen/qwen3.8-27b"
+        },
+
+        "qwen": {
+            "enabled": false,
+            "model": "Qwen/Qwen3-8B"
+        },
+
+        "openai": {
+            "enabled": false,
+            "model": "gpt-5-mini"
+        },
+
+        "gemini": {
+            "enabled": false,
+            "model": "gemini-2.5-flash"
+        }
+    },
+
+    "dataset": {
+        "path": "data/working_dataset.csv",
+        "encoding": "utf-8"
+    },
+
+    "_recorded_runs": [
+        {
+            "model": "openai/gpt-oss-20b",
+            "provider": "groq",
+            "short_name": "gpt_oss",
+            "raw_output": "outputs/raw/openai_gpt_oss_20b_results.csv",
+            "max_output_tokens": 512,
+            "responses": 312,
+            "truncated_at_ceiling": "24.4%"
+        },
+        {
+            "model": "qwen/qwen3.8-27b",
+            "provider": "groq",
+            "short_name": "qwen",
+            "raw_output": "outputs/raw/qwen_qwen3.8_27b_results.csv",
+            "max_output_tokens": 512,
+            "responses": 312,
+            "truncated_at_ceiling": "64.1%"
+        }
+    ],
+
+    "_recorded_runs_note": [
+        "Documentation only; the runner ignores keys prefixed with _.",
+        "The 624-response study used two models, but models.groq.model",
+        "holds one at a time, so the config alone does not record which",
+        "model produced which output file. Both are listed above.",
+        "Reproducing the study means running twice, setting",
+        "models.groq.model to each entry in turn.",
+        "The truncation percentages are why generation.max_output_tokens",
+        "should be raised to 2048 for the follow-up run."
+    ],
+
+    "generation": {
+        "temperature": 0.0,
+        "max_output_tokens": 512,
+        "timeout": 60
+    },
+
+    "runtime": {
+        "retry_attempts": 5,
+        "retry_delay": 2,
+        "save_every_response": true
+    },
+
+    "outputs": {
+        "raw": "outputs/raw",
+        "evaluated": "outputs/evaluated",
+        "merged": "outputs/merged",
+        "statistics": "outputs/statistics",
+        "figures": "outputs/figures"
+    },
+
+    "experiments": {
+        "directory": "experiments"
+    },
+
+    "logging": {
+        "directory": "logs",
+        "level": "INFO"
+    },
+
+    "benchmark": {
+        "languages": [
+            "en",
+            "hi",
+            "mr"
+        ],
+
+        "expected_categories": 13,
+        "expected_variations": 8
+    }
+}

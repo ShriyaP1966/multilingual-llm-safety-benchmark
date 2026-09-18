@@ -1,0 +1,76 @@
+# Multilingual LLM Safety Evaluation Framework
+#
+# Pinned to the versions the published results were produced with.
+# Python 3.13 (3.13.15 used for the recorded run).
+#
+# Install:
+#     pip install -r requirements.txt
+#
+# NOTE on torch: the recorded run used the CUDA 12.8 build
+# (torch 2.11.0+cu128), which does not come from PyPI. For a
+# GPU-identical environment install torch first:
+#
+#     pip install torch==2.11.0 --index-url https://download.pytorch.org/whl/cu128
+#
+# The CPU wheel pinned below is sufficient for evaluation and
+# statistics; classifier training expects CUDA.
+
+
+# ----------------------------------------------------------
+# Core pipeline
+# dataset validation, benchmark runner, evaluator, statistics
+# ----------------------------------------------------------
+
+pandas==3.0.5
+numpy==2.5.2
+scipy==1.18.1
+scikit-learn==1.9.0
+python-dotenv==1.2.3
+tqdm==4.70.0
+
+
+# ----------------------------------------------------------
+# LLM provider actually used for the 624-response run
+# openai/gpt-oss-20b and qwen/qwen3.8-27b, both served by Groq
+# ----------------------------------------------------------
+
+groq==1.7.0
+
+
+# ----------------------------------------------------------
+# Safety classifiers — MuRIL and XLM-R
+# scripts/ml/
+# ----------------------------------------------------------
+
+torch==2.11.0
+transformers==5.16.1
+datasets==5.0.1
+accelerate==1.14.0
+sentencepiece==0.2.2
+huggingface-hub==1.30.0
+safetensors==0.8.0
+
+
+# ----------------------------------------------------------
+# Figures
+# scripts/analysis/visualize_results.py
+#
+# Deliberately unpinned: matplotlib is NOT present in the
+# recorded environment, so there is no version to pin. The eight
+# existing figures were produced elsewhere, and
+# visualize_results.py cannot run until this is installed.
+# ----------------------------------------------------------
+
+matplotlib
+
+
+# ----------------------------------------------------------
+# Optional providers
+#
+# Both are disabled in config/config.json and were not used for
+# the recorded results, so no version is pinned. Uncomment and
+# pin only if switching providers.
+# ----------------------------------------------------------
+
+# openai
+# google-genai

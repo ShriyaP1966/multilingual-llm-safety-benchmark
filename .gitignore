@@ -1,0 +1,187 @@
+# ==========================================================
+# Python
+# ==========================================================
+
+__pycache__/
+*.py[cod]
+*$py.class
+
+# ==========================================================
+# Virtual Environments
+# ==========================================================
+
+.venv/
+venv/
+env/
+ENV/
+
+# ==========================================================
+# Environment Variables
+# ==========================================================
+
+.env
+
+# ==========================================================
+# VS Code
+# ==========================================================
+
+.vscode/
+
+# ==========================================================
+# Logs
+# ==========================================================
+
+logs/
+*.log
+
+# ==========================================================
+# Generated Benchmark Outputs
+# ==========================================================
+
+outputs/raw/*
+outputs/evaluated/*
+outputs/merged/*
+outputs/statistics/*
+outputs/figures/*
+
+# Keep folder structure
+!outputs/raw/.gitkeep
+!outputs/evaluated/.gitkeep
+!outputs/merged/.gitkeep
+!outputs/statistics/.gitkeep
+!outputs/figures/.gitkeep
+
+# ==========================================================
+# Experiment Runs
+# ==========================================================
+
+experiments/*
+!experiments/.gitkeep
+
+# ==========================================================
+# OS Files
+# ==========================================================
+
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ==========================================================
+# Jupyter
+# ==========================================================
+
+.ipynb_checkpoints/
+
+# ==========================================================
+# Python Testing
+# ==========================================================
+
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ==========================================================
+# Distribution
+# ==========================================================
+
+build/
+dist/
+*.egg-info/
+
+# ==========================================================
+# Temporary Files
+# ==========================================================
+
+*.tmp
+*.temp
+
+# API Keys & Secrets
+*.pem
+*.key
+
+# ==========================================================
+# Large Trained Models
+# ==========================================================
+
+outputs/analysis/classifier/muril/
+outputs/analysis/classifier/xlmr/
+
+# ==========================================================
+# Generated Analysis Outputs
+# ==========================================================
+
+outputs/analysis/
+outputs/processed/
+
+# ==========================================================
+# Local Working Datasets
+# ==========================================================
+
+data/working_dataset_gpt_oss.csv
+data/working_dataset_qwen.csv
+# ==========================================================
+# RESEARCH CHECKPOINT — irreplaceable artifacts
+#
+# Master report section 7 requires the 624-response experiment
+# and the 63 human-adjudicated gold labels to be preserved, but
+# the rules above left them untracked and unrecoverable.
+#
+# The small CSVs and figures below are therefore versioned.
+# Trained model weights (13.6 GB) remain excluded and must be
+# archived to external storage separately.
+# ==========================================================
+
+# Raw model responses — the experiment itself
+!outputs/raw/*.csv
+
+# Evaluator output
+!outputs/evaluated/*.csv
+
+# Working datasets consumed by the evaluator
+!data/working_dataset_gpt_oss.csv
+!data/working_dataset_qwen.csv
+
+# Re-enter the ignored analysis tree, then whitelist selectively.
+# (git cannot re-include a file whose parent directory is excluded,
+#  so each directory is un-ignored before its files.)
+!outputs/analysis/
+outputs/analysis/*
+
+!outputs/analysis/audit/
+!outputs/analysis/audit/*.csv
+
+!outputs/analysis/statistics/
+!outputs/analysis/statistics/*.csv
+
+!outputs/analysis/figures/
+!outputs/analysis/figures/*.png
+
+!outputs/analysis/classifier/
+outputs/analysis/classifier/*
+!outputs/analysis/classifier/*.csv
+!outputs/analysis/classifier/comparison/
+!outputs/analysis/classifier/comparison/*.csv
+!outputs/analysis/classifier/muril_gold/
+!outputs/analysis/classifier/muril_gold/*
+!outputs/analysis/classifier/xlmr_gold/
+!outputs/analysis/classifier/xlmr_gold/*
+
+# Trained weights stay out (restated last so nothing above can
+# accidentally re-include a multi-gigabyte checkpoint).
+outputs/analysis/classifier/muril/
+outputs/analysis/classifier/xlmr/
+
+# ==========================================================
+# Demonstration application
+# ==========================================================
+
+app/frontend/node_modules/
+app/frontend/dist/
+app/frontend/.env
+app/**/__pycache__/
+
+# Stale frontend snapshot — never publish
+app/frontend_backup_*/
+
+# Preserved legacy git history from the old CLVPI_NLP repo — never publish
+.git_OLD_CLVPI_backup/

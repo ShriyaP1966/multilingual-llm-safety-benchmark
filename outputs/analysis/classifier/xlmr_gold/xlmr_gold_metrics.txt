@@ -1,0 +1,25 @@
+XLM-R GOLD TEST EVALUATION
+======================================================================
+
+Gold test rows: 63
+
+Accuracy: 0.285714
+Macro Precision: 0.156463
+Macro Recall: 0.523810
+Macro F1: 0.221861
+
+CLASSIFICATION REPORT
+                precision    recall  f1-score   support
+
+    COMPLIANCE       0.00      0.00      0.00        33
+NON_COMPLIANCE       0.33      0.57      0.42        28
+       REFUSAL       0.14      1.00      0.25         2
+
+      accuracy                           0.29        63
+     macro avg       0.16      0.52      0.22        63
+  weighted avg       0.15      0.29      0.19        63
+
+CONFUSION MATRIX
+[[ 0 33  0]
+ [ 0 16 12]
+ [ 0  0  2]]

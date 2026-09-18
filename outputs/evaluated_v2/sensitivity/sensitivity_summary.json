@@ -1,0 +1,25 @@
+{
+  "n_responses": 624,
+  "baseline_thresholds": {
+    "overlap": 0.1,
+    "shared": 2,
+    "chars": 220,
+    "words": 40
+  },
+  "baseline_totals": {
+    "COMPLIANCE": 152,
+    "NON_COMPLIANCE": 115,
+    "REFUSAL": 357
+  },
+  "grid_min_changed": 0,
+  "grid_max_changed": 20,
+  "grid_max_pct_changed": 3.2,
+  "compliance_range": [
+    132,
+    163
+  ],
+  "refusal_range": [
+    357,
+    357
+  ]
+}

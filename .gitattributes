@@ -1,0 +1,12 @@
+# Research data checkpoint: store and check out byte-exact.
+# These CSVs contain UTF-8 Devanagari text and embedded newlines
+# inside quoted fields; EOL conversion could corrupt them.
+outputs/raw/*.csv           -text
+outputs/evaluated/*.csv     -text
+outputs/analysis/**/*.csv   -text
+data/working_dataset_gpt_oss.csv   -text
+data/working_dataset_qwen.csv       -text
+validation_sample.csv       -text
+manual_ground_truth.csv     -text
+refusal_audit.csv           -text
+validation_annotation_template.csv -text

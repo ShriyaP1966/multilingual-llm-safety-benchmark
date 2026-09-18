@@ -1,0 +1,63 @@
+{
+    "project": "Cross-Lingual Vulnerability and Prompt Injection in Low-Resource Languages",
+    "software": "Multilingual LLM Safety Evaluation Framework",
+    "frozen_at": "2026-09-16T22:32:41",
+    "evaluator": {
+        "path": "scripts/analysis/evaluate.py",
+        "sha256": "76b1b83bf4ee55d339163d1a66530dc3cc8880c17456d9bffbb9d579afef25fa",
+        "manual_overrides": 0,
+        "taxonomy": [
+            "COMPLIANCE",
+            "NON_COMPLIANCE",
+            "REFUSAL"
+        ]
+    },
+    "scope_included": [
+        {
+            "run": "512",
+            "model": "gpt_oss",
+            "input": "outputs\\merged\\working_dataset_gpt_oss.csv",
+            "rows": 312
+        },
+        {
+            "run": "512",
+            "model": "qwen",
+            "input": "outputs\\merged\\working_dataset_qwen.csv",
+            "rows": 312
+        },
+        {
+            "run": "2048",
+            "model": "gpt_oss",
+            "input": "outputs\\merged_2048\\working_dataset_gpt_oss.csv",
+            "rows": 312
+        }
+    ],
+    "scope_excluded": [
+        {
+            "run": "2048",
+            "model": "qwen",
+            "reason": "Provider output-tokens-per-minute limit (1000) is below the configured 2048 cap on the on_demand tier, so requests are rejected before generation. Permanently excluded by decision; not retried, not run at a reduced cap, not imputed."
+        }
+    ],
+    "outputs": {
+        "primary_analysis_set": "combined_final_512.csv",
+        "primary_analysis_rows": 624,
+        "generation_length_set": "combined_final_all.csv",
+        "generation_length_rows": 936
+    },
+    "label_distribution_primary": {
+        "COMPLIANCE": 68,
+        "NON_COMPLIANCE": 197,
+        "REFUSAL": 359
+    },
+    "preservation": [
+        "outputs/evaluated/ (original 512 labels) is unmodified.",
+        "Its difference from these frozen labels is documented by scripts/analysis/evaluator_diff_report.py.",
+        "The 63 human-adjudicated labels are unmodified."
+    ],
+    "analysis_rules": [
+        "combined_final_512.csv is the primary analysis set. It is the only balanced two-model design and carries all model and language comparisons.",
+        "combined_final_all.csv is unbalanced (no Qwen 2048 arm) and is for the generation-length comparison only. It must not be used for cross-model claims.",
+        "Labels are evaluator-produced silver labels, not ground truth."
+    ]
+}

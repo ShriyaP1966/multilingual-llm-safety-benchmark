@@ -1,0 +1,10 @@
+{
+  "model": "gpt_oss",
+  "paired": 312,
+  "labels_changed": 22,
+  "pct_changed": 7.1,
+  "ceiling_512pct": 24.4,
+  "ceiling_2048pct": 2.6,
+  "qwen_2048": "EXCLUDED \u2014 provider output-token-per-minute limit (OTPM 1000 < requested); not run, not simulated. Qwen generation-length sensitivity unmeasured.",
+  "terminology": "generation-length / truncation sensitivity (NOT tokenizer inequity)"
+}

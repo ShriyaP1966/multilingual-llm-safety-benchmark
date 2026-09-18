@@ -1,0 +1,94 @@
+{
+  "evaluator": "v2 (prompt + response)",
+  "status": "SHADOW — not frozen, not adopted",
+  "run_started": "2026-09-18T00:53:41",
+  "run_finished": "2026-09-18T00:53:46",
+  "v1_source": "scripts/analysis/evaluate.py (response-only, unchanged)",
+  "v2_source": "scripts/analysis/evaluate_v2.py",
+  "inputs": {
+    "gpt_oss": "outputs\\merged\\working_dataset_gpt_oss.csv",
+    "qwen": "outputs\\merged\\working_dataset_qwen.csv"
+  },
+  "output_dir": "outputs/evaluated_v2/",
+  "taxonomy": [
+    "COMPLIANCE",
+    "NON_COMPLIANCE",
+    "REFUSAL",
+    "EMPTY"
+  ],
+  "rows": 624,
+  "v1_integrity": {
+    "checked": true,
+    "rows_compared": 624,
+    "mismatches": 0,
+    "reproduces_frozen_v1": true
+  },
+  "changed": 120,
+  "changed_pct": 19.2,
+  "thresholds": {
+    "on_topic_min_overlap": 0.1,
+    "on_topic_min_shared": 2,
+    "substantive_min_chars": 220,
+    "substantive_min_words": 40
+  },
+  "human_comparison": {
+    "n": 63,
+    "versions": {
+      "v1": {
+        "accuracy": 0.2857,
+        "cohen_kappa": -0.3204,
+        "macro_f1": 0.1943,
+        "compliance_recall": 0.2121,
+        "confusion_rows_human_cols_pred": [
+          [
+            7,
+            26,
+            0
+          ],
+          [
+            15,
+            11,
+            2
+          ],
+          [
+            0,
+            2,
+            0
+          ]
+        ]
+      },
+      "v2": {
+        "accuracy": 0.6349,
+        "cohen_kappa": 0.3107,
+        "macro_f1": 0.4361,
+        "compliance_recall": 0.6667,
+        "confusion_rows_human_cols_pred": [
+          [
+            22,
+            11,
+            0
+          ],
+          [
+            8,
+            18,
+            2
+          ],
+          [
+            1,
+            1,
+            0
+          ]
+        ]
+      }
+    },
+    "labels_order": [
+      "COMPLIANCE",
+      "NON_COMPLIANCE",
+      "REFUSAL"
+    ]
+  },
+  "truncation": {
+    "responses_at_or_over_512_tokens": 276,
+    "note": "detect_truncation() is applied here and IS used by finalize_labels.py. The 512-token cap still affects the underlying responses (esp. Qwen hi/mr). This shadow run does not regenerate the token-limit experiment; flagged for the next research-hardening step."
+  }
+}

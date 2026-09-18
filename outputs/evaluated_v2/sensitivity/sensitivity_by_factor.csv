@@ -1,0 +1,11 @@
+corner,factor,level,changed_vs_baseline,total,pct
+loosest,model,gpt_oss,2,312,0.6
+loosest,model,qwen,9,312,2.9
+loosest,language,en,4,208,1.9
+loosest,language,hi,2,208,1.0
+loosest,language,mr,5,208,2.4
+tightest,model,gpt_oss,3,312,1.0
+tightest,model,qwen,17,312,5.4
+tightest,language,en,2,208,1.0
+tightest,language,hi,5,208,2.4
+tightest,language,mr,13,208,6.2
