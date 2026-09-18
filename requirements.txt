@@ -65,6 +65,20 @@ matplotlib
 
 
 # ----------------------------------------------------------
+# Demonstration backend API — app/backend/main.py
+# FastAPI application served by Uvicorn. Required for the API
+# server to start on a clean deploy (e.g. Render): fastapi and
+# uvicorn are not transitive dependencies of the packages above,
+# so they must be declared explicitly. pydantic is imported
+# directly by the backend; pinned to the working version.
+# ----------------------------------------------------------
+
+fastapi==0.141.1
+uvicorn==0.53.0
+pydantic==2.13.5
+
+
+# ----------------------------------------------------------
 # Optional providers
 #
 # Both are disabled in config/config.json and were not used for
