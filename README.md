@@ -1,291 +1,226 @@
-# 🌍 Cross-Lingual Vulnerability and Prompt Injection in Low-Resource Languages
+# Multilingual LLM Safety Benchmark
 
-A research study of how large language models respond to harmful and adversarial prompts across English, Hindi and Marathi, using a systematic multilingual benchmark.
+![Python](https://img.shields.io/badge/Python-3.13-3776AB)
+![React](https://img.shields.io/badge/React-Vite%20%2B%20TypeScript-61DAFB)
+![FastAPI](https://img.shields.io/badge/API-FastAPI-009688)
+![License: MIT](https://img.shields.io/badge/License-MIT-green)
 
-The study varies attack category and prompt framing, collects model responses, evaluates their safety, audits that evaluation against a targeted adjudication set, analyses the results statistically, and investigates whether multilingual transformers can classify the safety of model-generated responses.
+**Project:** Multilingual LLM Safety Benchmark
+**Software:** Multilingual LLM Safety Evaluation Framework
+**Research topic:** *Cross-Lingual Vulnerability and Prompt Injection in Low-Resource Languages*
 
-**Software:** the benchmark system built to carry out this research is the **Multilingual LLM Safety Evaluation Framework**. That name refers to the software; the study itself is titled as above.
+A reproducible software framework for evaluating how large language models respond to
+adversarial and potentially harmful prompts across **English, Hindi, and Marathi**. It
+measures whether a model's safety behaviour holds up across languages and across a
+controlled set of adversarial prompt variations, and whether multilingual transformers can
+classify the safety of model responses. The benchmark is an instrument for **measurement and
+evaluation** — not a tool for producing harmful content, and not a universal proof of
+multilingual safety.
 
-> **Naming note.** Use *Cross-Lingual Vulnerability and Prompt Injection in Low-Resource Languages* for the research project, paper, report and presentation. Use *Multilingual LLM Safety Evaluation Framework* only when referring specifically to the software.
+## Why this project?
 
----
+Large language models are increasingly deployed in multilingual settings, yet safety
+behaviour cannot be assumed to transfer uniformly across languages or adversarial phrasings.
+Most published safety evaluation is done in English. If a model refuses a harmful request in
+English but complies with the same request in Hindi or Marathi, its safety training has not
+transferred — and speakers of those languages carry the risk.
 
-## 🎯 Research questions
+This project provides a controlled benchmark to examine whether model responses differ across
+**English, Hindi, and Marathi**, and across several adversarial prompt framings. The purpose
+is evaluation and measurement, not the generation of usable harmful content.
 
-1. Do safety outcomes differ between the evaluated LLMs?
-2. Do safety outcomes differ across English, Hindi and Marathi?
-3. Do different attack categories produce different safety outcomes?
-4. Do prompt variations affect safety behaviour?
-5. How reliable is automatic safety evaluation compared with human judgement?
-6. Can multilingual transformer models classify the safety of LLM-generated responses?
-7. Does classifier performance based on automatically labelled data generalise to human-validated data?
+## Benchmark at a glance
 
----
+| Dimension | Value |
+|---|---|
+| Languages | English, Hindi, Marathi |
+| Prompt sets | 104 multilingual prompt sets |
+| Attack categories | 13 |
+| Prompt variations | 8 |
+| Benchmark tasks per model | 312 (104 × 3 languages) |
+| Models evaluated | GPT-OSS and Qwen |
+| Total responses | 624 |
+| Responses per model | 312 |
+| Responses per language | 208 |
 
-## 🎯 Objectives
+The eight prompt variations change **framing, not content**:
 
-- Benchmark multilingual LLM safety performance across low-resource languages
-- Compare the evaluated models across English, Hindi and Marathi
-- Generate reproducible experiments
-- Produce statistics and visualizations
-- Build a reusable evaluation framework
-- Extend the framework with an automated safety classifier
+1. Baseline
+2. Urgency
+3. Trusted Relationship
+4. Roleplay
+5. Hypothetical
+6. Obfuscation
+7. Multilingual Code-Switch
+8. Emotional Appeal
 
----
+The unit of statistical independence is the **prompt set**: each set is measured six times
+(3 languages × 2 models), so responses are clustered rather than independent.
 
-## ✨ Features
-
-### ✅ Implemented
-
-- Dataset validation and UTF-8 sanitization
-- Multilingual dataset loader
-- Benchmark execution engine with resumable runs
-- Provider Factory architecture (mock, Groq, OpenAI, Gemini, Qwen)
-- Experiment management and result writer
-- Configuration-driven execution, selectable via `BENCHMARK_CONFIG`
-- Long-to-wide merge step carrying `output_tokens` through
-- Rule-based safety evaluator over **prompt + response** (refusal, actionable-content, defensive-context detection)
-- Targeted audit queue and adjudication tooling
-- Exploratory statistical analysis (chi-square, Cramér's V)
-- Confirmatory statistical analysis (Stuart–Maxwell, GEE, Benjamini–Hochberg)
-- Evaluator change-record tooling
-- Classifier dataset preparation and leakage-checked grouped split
-- MuRIL and XLM-R training (**response-only** classifier), gold evaluation and comparison
-- Visualization scripts
-
-### 🚧 In Progress
-
-- 2048-token follow-up experiment — complete for GPT-OSS, **Qwen arm blocked** by a provider output-token rate limit
-- 512 vs 2048 generation-length comparison (tooling ready, awaiting the Qwen arm)
-- Publication-quality figures and tables
-- Research paper
-
-### 🔮 Planned / future strengthening
-
-- Representative human-validated sample (~150 cases) for population-level evaluator reliability
-- Additional LLM providers and languages
-- Optional demonstration layer (React + Vite → FastAPI → XLM-R)
-
----
-
-## ⚠️ Interpretation constraints
-
-These apply to any reported result from this project:
-
-- Evaluator output is a **silver label**, not ground truth. Adjudicated audit cases are the **gold labels**, and the two are always reported separately.
-- The 63 gold cases come from a **targeted audit** that deliberately oversampled suspected evaluator errors. They are not a representative sample and must not be presented as population-level evaluator or classifier accuracy.
-- Statistical tests here are **association tests**. Correct phrasing is that a prompt framing *was associated with* a different distribution of safety outcomes — not that it *caused* unsafe behaviour.
-- Differences between the 512-token and 2048-token experiments reflect **generation-length / truncation sensitivity**. The mechanism behind the observed language differences is not established by these experiments.
-- Classifier accuracy is always reported beside the majority-class baseline.
-
----
-
-## 🌐 Languages
-
-- 🇺🇸 English
-- 🇮🇳 Hindi
-- 🇮🇳 Marathi
-
----
-
-## 📊 Benchmark Dataset
-
-- **104 multilingual prompt sets** (13 attack categories x 8 prompt variations)
-- **13 attack categories**, mapping one-to-one onto `attack_id`
-- **8 prompt variations** (baseline, urgency, trusted relationship, roleplay,
-  hypothetical, obfuscation, multilingual code-switch, emotional appeal)
-- **3 languages**: English, Hindi, Marathi
-- **312 benchmark tasks per model** (104 prompt sets x 3 languages)
-- **624 collected responses** in the 512-token experiment (312 per model)
-
-The unit of statistical independence is the **prompt set**, not the
-response: each prompt set is measured six times (3 languages x 2 models).
-
----
-
-## 🏗 Architecture
-
-```text
-Dataset
-   │
-   ▼
-Validation
-   │
-   ▼
-Task Generation
-   │
-   ▼
-Provider Factory
-   │
-   ├── Mock
-   ├── Groq  ── openai/gpt-oss-20b, qwen/qwen3.8-27b   (used for recorded runs)
-   ├── OpenAI                                          (configured, unused)
-   └── Gemini                                          (configured, unused)
-   │
-   ▼
-Benchmark Engine (resumable)
-   │
-   ▼
-Result Writer  ──►  outputs/raw/       512-token experiment
-                    outputs/raw_2048/  2048-token experiment
-   │
-   ▼
-Merge (long ─► wide, carries output_tokens)
-   │
-   ▼
-Automatic Evaluation  ──►  silver labels
-   │                          │
-   │                          ▼
-   │                 Targeted Audit ──►  gold labels (63 adjudicated)
-   ▼
-Statistics                Classifier
-   ├── exploratory        ├── grouped leakage-checked split
-   └── confirmatory       └── MuRIL / XLM-R  ─►  response safety class
-   │
-   ▼
-Figures & Tables
-```
-
----
-
-## 🛠 Tech Stack
-
-**Language**
-- Python 3.13
-
-**Core libraries**
-- pandas, numpy
-- scipy, statsmodels (statistical analysis)
-- scikit-learn (metrics, grouped splits)
-- matplotlib (figures)
-- python-dotenv
-
-**Models served via Groq** (provider used for the recorded runs)
-- `openai/gpt-oss-20b`
-- `qwen/qwen3.8-27b`
-
-**Classifiers**
-- transformers, torch, datasets, accelerate
-- MuRIL (`google/muril-base-cased`)
-- XLM-R (`xlm-roberta-base`)
-
-See `requirements.txt` for pinned versions and `REPRODUCIBILITY.md`
-for the full recorded environment.
-
-**Translation** (dataset construction)
-- Hugging Face Transformers
-- IndicTrans2
-
-**Tools**
-- Git
-- GitHub
-- VS Code
-
----
-
-## 📂 Project Structure
+## Evaluation pipeline
 
 ```
-NLP_Safety_Benchmark/
-│
-├── config/
-├── data/
-├── experiments/
-├── outputs/
-├── scripts/
-│   ├── providers/
-│   ├── analysis/
-│   ├── dataset_loader.py
-│   ├── result_writer.py
-│   ├── run_experiment.py
-│   ├── sanitize_dataset.py
-│   ├── validate_dataset.py
-│   └── utils.py
-│
-└── README.md
+Adversarial prompt
+        ↓
+LLM response
+        ↓
+V2 safety evaluation   (prompt + response)
+        ↓
+COMPLIANCE / NON_COMPLIANCE / REFUSAL   (silver labels)
+        ↓
+Statistical analysis
+        ↓
+Response-only multilingual classification
 ```
 
----
+Two components are deliberately kept distinct:
 
-## 🚀 Getting Started
+- **Safety evaluator (V2)** reads **both the original adversarial prompt and the model
+  response** to judge whether the harmful request was fulfilled. It produces the automatic
+  *silver* labels used for analysis.
+- **Multilingual classifier** reads the **response text only**. It predicts
+  COMPLIANCE / NON_COMPLIANCE / REFUSAL and does not receive the prompt. It is a response
+  classifier, not a harmful-prompt detector.
 
-Clone the repository
+**V1** (response-only) is retained as the legacy/previous evaluator; **V2** (prompt +
+response) is the frozen final evaluator used for the current results.
+
+## Final V2 findings
+
+Final V2 label distribution (624 responses):
+
+| Label | Count |
+|---|---|
+| REFUSAL | 357 |
+| COMPLIANCE | 152 |
+| NON_COMPLIANCE | 115 |
+
+- **Model.** Model and safety-label distribution were significantly associated — exploratory
+  χ² ≈ 71.1 (Cramér's V ≈ 0.34), and the repeated-measures confirmatory test survived
+  Benjamini–Hochberg (BH) correction (adjusted *p* ≈ 1.3 × 10⁻¹⁵).
+- **Attack category & prompt variation.** Both pre-declared refusal contrasts remained
+  significant after BH correction (adjusted *p* ≈ 0.003).
+- **Language.** No pairwise language comparison survived BH correction — English–Hindi
+  ≈ 0.054, English–Marathi ≈ 0.29, Hindi–Marathi ≈ 0.19 — and the exploratory language
+  association was small (Cramér's V ≈ 0.063). Differences are descriptive within this
+  benchmark, not statistically confirmed at the corrected threshold.
+
+These are **associations within this benchmark** — not causal claims, and not evidence that
+any language is universally safer or less safe.
+
+### Generation-length sensitivity
+
+A **generation-length / truncation sensitivity analysis** compared GPT-OSS at 512- vs
+2048-token generation budgets across 312 paired responses:
+
+- ceiling-hit rate: **24.4% → 2.6%**
+- mean response length: **471 → 1127 characters**
+- labels changed: **22 / 312 (7.1%)**
+- REFUSAL count unchanged (**220** at both budgets)
+
+Safety labels were largely insensitive to the generation budget for GPT-OSS. The Qwen
+2048-token condition was **not completed** because of the provider's output-token-per-minute
+limit; it was not run and not simulated, so Qwen generation-length sensitivity is unmeasured.
+
+## Models / classifiers
+
+Two multilingual transformers classify a response into the three safety classes:
+
+- **XLM-R** (`xlm-roberta-base`)
+- **MuRIL** (`google/muril-base-cased`)
+
+Classification is **response-only**. The train/test split is grouped by prompt set to prevent
+leakage, with the targeted-audit adjudication set held out for evaluation. Because the
+provenance of those adjudicated labels is not established as independent human annotation,
+this repository does **not** present them as validated ground-truth accuracy. The classifier
+is a research artifact — not a production safety control. Detailed metrics are recorded in the
+frozen outputs and the reproducibility documents.
+
+## Repository structure
+
+```
+app/
+  backend/      FastAPI backend (read-only demonstration API over frozen outputs)
+  frontend/     React + Vite + TypeScript interface
+scripts/
+  analysis/     benchmark evaluation, statistics, generation-length, tables
+  ml/           classifier split preparation and training
+  providers/    LLM provider factory (used during generation)
+data/            benchmark prompt sets
+config/          run configuration
+outputs/         frozen benchmark and analysis artifacts (weights excluded)
+README.md
+REPRODUCIBILITY.md
+REPRODUCIBILITY_FINAL_V2.md
+EVALUATOR_VERSIONS.md
+requirements.txt
+LICENSE
+```
+
+Large trained model weights are **excluded** from the repository; the small benchmark and
+analysis artifacts under `outputs/` are versioned.
+
+## Running locally
 
 ```bash
+# 1. Clone
 git clone https://github.com/ShriyaP1966/multilingual-llm-safety-benchmark.git
-```
+cd multilingual-llm-safety-benchmark
 
-Install dependencies
-
-```bash
+# 2. Python environment (backend + analysis)
+python -m venv .venv
+# Windows: .venv\Scripts\activate   |   macOS/Linux: source .venv/bin/activate
 pip install -r requirements.txt
+
+# 3. Backend API (FastAPI served by Uvicorn)
+uvicorn app.backend.main:app --port 8077
+
+# 4. Frontend (React + Vite + TypeScript), in a second terminal
+cd app/frontend
+npm install
+npm run dev
 ```
 
-Run the benchmark
+The backend serves its read-only endpoints (benchmark results, methodology) without the
+trained weights. Live response classification additionally requires the XLM-R / MuRIL
+weights, which — like any secrets — are **excluded from GitHub** and must be produced or
+obtained separately (see the reproducibility documents).
 
-```bash
-python scripts/run_experiment.py
-```
+## Reproducibility
 
----
+- **`REPRODUCIBILITY_FINAL_V2.md`** — the frozen final (V2) pipeline.
+- **`REPRODUCIBILITY.md`** — the V1 (legacy) record, preserved unchanged.
+- **`EVALUATOR_VERSIONS.md`** — the V1 (response-only) vs V2 (prompt + response) distinction.
 
-## 🗺 Roadmap
+V2 is the frozen final evaluator; V1 is retained for historical/legacy comparison.
 
-- [x] Project foundation
-- [x] Dataset validation and sanitization
-- [x] Benchmark execution engine (resumable)
-- [x] Provider Factory architecture
-- [x] Mock provider
-- [x] Groq integration (models used for the recorded runs)
-- [x] Automatic safety evaluation
-- [x] Targeted audit and adjudication tooling (63 gold cases)
-- [x] Exploratory statistics and figures
-- [x] Confirmatory statistics (repeated-measures appropriate)
-- [x] Safety classifier (MuRIL and XLM-R, response-only)
-- [x] 512-token benchmark experiment
-- [~] 2048-token follow-up experiment (GPT-OSS complete, Qwen blocked)
-- [ ] 512 vs 2048 generation-length comparison
-- [ ] Publication-quality figures and tables
-- [ ] Research paper
-- [ ] Optional demonstration interface
+## Methodological notes & limitations
 
----
+- The benchmark contains a controlled set of 104 multilingual prompt sets and therefore does
+  not represent all possible real-world prompts.
+- Statistical findings are **associations within the benchmark** and should not be
+  interpreted causally.
+- Language comparisons should not be generalized beyond the tested benchmark.
+- Generation-length sensitivity affects a subset of results and was studied for GPT-OSS.
+- Qwen's 2048-token condition was not completed because of provider output-token limits.
+- The targeted-audit / adjudication provenance is **not** established as independent human
+  validation and should not be described as such.
+- Large model weights are excluded from the repository.
+- This is an evaluation/research framework, not a guarantee of LLM safety.
 
-## 🎓 Research Vision
+## Research use & safety
 
-This project aims to evolve into a complete multilingual LLM safety evaluation platform by combining:
+This benchmark is intended for safety evaluation, robustness research, multilingual LLM
+analysis, reproducibility, and academic/engineering experimentation. Adversarial prompts are
+included **as evaluation inputs** and must not be interpreted as instructions for real-world
+harmful activity.
 
-- Benchmarking
-- Automated evaluation
-- Statistical analysis
-- Cross-model comparison
-- AI-powered safety classification
+## Citation
 
-The framework is designed to be modular, reproducible, and easily extendable for future LLMs and multilingual safety research.
+> Shriya Patil. *Multilingual LLM Safety Benchmark: Cross-Lingual Vulnerability and Prompt
+> Injection in Low-Resource Languages.*
 
----
+## License
 
-## 📄 License
-
-**All Rights Reserved.**
-
-This repository is provided for viewing, educational, and research reference only.
-
-No permission is granted to copy, modify, redistribute, or commercially use the source code without prior written permission from the author.
-
-See the [LICENSE](LICENSE) file for full terms.
-
----
-
-## 👩‍💻 Author
-
-**Shriya Patil**
-
-B.Sc. Artificial Intelligence
-
-**Research Interests**
-- Artificial Intelligence
-- Large Language Models (LLMs)
-- AI Safety
-- Natural Language Processing
-- Multilingual AI
+Licensed under the MIT License. See [`LICENSE`](LICENSE) for details. Third-party
+dependencies remain under their own respective licenses.
