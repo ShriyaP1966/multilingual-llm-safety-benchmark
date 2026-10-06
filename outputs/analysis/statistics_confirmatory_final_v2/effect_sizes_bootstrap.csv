@@ -1,0 +1,13 @@
+factor,comparison,label,share_gpt_oss,share_qwen,difference_pp,ci95_low_pp,ci95_high_pp,excludes_zero,n_clusters,share_en,share_hi,share_mr
+model,gpt_oss - qwen,COMPLIANCE,23.4,25.32,-1.92,-8.97,5.45,False,104,,,
+model,gpt_oss - qwen,NON_COMPLIANCE,6.09,30.77,-24.68,-31.09,-18.59,True,104,,,
+model,gpt_oss - qwen,REFUSAL,70.51,43.91,26.6,18.91,33.97,True,104,,,
+language,en - hi,COMPLIANCE,,,2.88,-2.88,8.65,False,104,24.52,21.63,
+language,en - hi,NON_COMPLIANCE,,,5.77,-0.96,12.5,False,104,22.12,16.35,
+language,en - hi,REFUSAL,,,-8.65,-14.9,-1.92,True,104,53.37,62.02,
+language,en - mr,COMPLIANCE,,,-2.4,-8.19,3.85,False,104,24.52,,26.92
+language,en - mr,NON_COMPLIANCE,,,5.29,-0.96,11.54,False,104,22.12,,16.83
+language,en - mr,REFUSAL,,,-2.88,-9.62,3.37,False,104,53.37,,56.25
+language,hi - mr,COMPLIANCE,,,-5.29,-11.06,0.48,False,104,,21.63,26.92
+language,hi - mr,NON_COMPLIANCE,,,-0.48,-6.73,5.77,False,104,,16.35,16.83
+language,hi - mr,REFUSAL,,,5.77,-1.44,12.98,False,104,,62.02,56.25

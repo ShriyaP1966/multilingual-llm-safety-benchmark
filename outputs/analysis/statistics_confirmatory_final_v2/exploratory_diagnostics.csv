@@ -1,0 +1,5 @@
+factor,test,chi_square,df,p_value_uncorrected,cramers_v,cells,cells_expected_below_5,pct_cells_below_5,min_expected,independence_violated,note
+model,Pearson chi-square (independence assumed),71.0903,2,3.655453572532134e-16,0.3375,6,0,0.0,57.5,True,Exploratory only. Treats 624 clustered observations as independent; each prompt set contributes 6.
+language,Pearson chi-square (independence assumed),4.9222,4,0.2953762756721632,0.0628,9,0,0.0,38.33,True,Exploratory only. Treats 624 clustered observations as independent; each prompt set contributes 6.
+attack_category,Pearson chi-square (independence assumed),76.8587,24,1.910638223971056e-07,0.2482,39,0,0.0,8.85,True,Exploratory only. Treats 624 clustered observations as independent; each prompt set contributes 6.
+variation_id,Pearson chi-square (independence assumed),111.8853,14,2.4089117100679983e-17,0.2994,24,0,0.0,14.38,True,Exploratory only. Treats 624 clustered observations as independent; each prompt set contributes 6.

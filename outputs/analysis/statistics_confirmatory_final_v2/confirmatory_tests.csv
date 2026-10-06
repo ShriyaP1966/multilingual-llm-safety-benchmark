@@ -1,0 +1,7 @@
+analysis,method,statistic,df,p_value,n_units,unit,p_value_bh,significant_bh_05
+Model: gpt_oss vs qwen,"Stuart-Maxwell marginal homogeneity (paired, 3-class)",72.4154,2,2.220446049250313e-16,312,prompt set x language,1.3322676295501878e-15,True
+Language: en vs hi,"Stuart-Maxwell marginal homogeneity (paired, 3-class)",6.6454,2,0.03605447177061749,208,prompt set x model,0.05408170765592624,False
+Language: en vs mr,"Stuart-Maxwell marginal homogeneity (paired, 3-class)",2.4947,2,0.28726907736795426,208,prompt set x model,0.28726907736795426,False
+Language: hi vs mr,"Stuart-Maxwell marginal homogeneity (paired, 3-class)",3.7073,2,0.15666790902900996,208,prompt set x model,0.18800149083481194,False
+attack_category (binary REFUSAL contrast),"GEE logistic, exchangeable, prompt-set clusters; Wald omnibus",33.3343,12,0.0008582673233489312,104,prompt-set cluster,0.0025748019700467936,True
+variation_id (binary REFUSAL contrast),"GEE logistic, exchangeable, prompt-set clusters; Wald omnibus",23.323,7,0.0014972550778391581,104,prompt-set cluster,0.0029945101556783163,True

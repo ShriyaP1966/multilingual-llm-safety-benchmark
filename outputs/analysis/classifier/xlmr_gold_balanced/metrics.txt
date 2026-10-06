@@ -1,0 +1,27 @@
+XLM-R GOLD TEST EVALUATION (CLASS-WEIGHTED, BALANCED)
+======================================================================
+
+Non-frozen experiment. Evaluates outputs/analysis/classifier/xlmr_balanced, not the original outputs/analysis/classifier/xlmr checkpoint.
+
+Gold test rows: 63
+
+Accuracy: 0.349206
+Macro Precision: 0.128655
+Macro Recall: 0.261905
+Macro F1: 0.172549
+
+CLASSIFICATION REPORT
+                precision    recall  f1-score   support
+
+    COMPLIANCE       0.00      0.00      0.00        33
+NON_COMPLIANCE       0.39      0.79      0.52        28
+       REFUSAL       0.00      0.00      0.00         2
+
+      accuracy                           0.35        63
+     macro avg       0.13      0.26      0.17        63
+  weighted avg       0.17      0.35      0.23        63
+
+CONFUSION MATRIX
+[[ 0 33  0]
+ [ 0 22  6]
+ [ 0  2  0]]

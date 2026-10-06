@@ -1,0 +1,10 @@
+en (row),comparison,COMPLIANCE,NON_COMPLIANCE,REFUSAL,hi (row)
+COMPLIANCE,en vs hi,27,10,14,
+NON_COMPLIANCE,en vs hi,9,17,20,
+REFUSAL,en vs hi,9,7,95,
+COMPLIANCE,en vs mr,32,8,11,
+NON_COMPLIANCE,en vs mr,10,16,20,
+REFUSAL,en vs mr,14,11,86,
+,hi vs mr,32,4,9,COMPLIANCE
+,hi vs mr,7,12,15,NON_COMPLIANCE
+,hi vs mr,17,19,93,REFUSAL

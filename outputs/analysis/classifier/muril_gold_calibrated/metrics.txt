@@ -1,0 +1,34 @@
+MuRIL GOLD TEST EVALUATION (PRIOR-CALIBRATED)
+======================================================================
+
+Non-frozen diagnostic experiment. Original checkpoint is unmodified; only inference-time logits are adjusted.
+
+Calibration: adjusted_logit(y|x) = raw_logit(y|x) - log(pi_train(y)), pi_train computed from train_silver.csv only.
+
+Training priors (pi_train) by class:
+  COMPLIANCE: 0.034694
+  NON_COMPLIANCE: 0.287755
+  REFUSAL: 0.677551
+
+Gold test rows: 63
+
+Accuracy: 0.523810
+Macro Precision: 0.174603
+Macro Recall: 0.333333
+Macro F1: 0.229167
+
+CLASSIFICATION REPORT
+                precision    recall  f1-score   support
+
+    COMPLIANCE       0.52      1.00      0.69        33
+NON_COMPLIANCE       0.00      0.00      0.00        28
+       REFUSAL       0.00      0.00      0.00         2
+
+      accuracy                           0.52        63
+     macro avg       0.17      0.33      0.23        63
+  weighted avg       0.27      0.52      0.36        63
+
+CONFUSION MATRIX
+[[33  0  0]
+ [28  0  0]
+ [ 2  0  0]]

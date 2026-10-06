@@ -64,6 +64,12 @@ REFUSAL 357 · COMPLIANCE 152 · NON_COMPLIANCE 115 (sum = 624; integrity verifi
 - Train COMPLIANCE share rises to 22.4% (v1: 3.5%); train→gold shift reduced.
 - Models: XLM-R (`xlm-roberta-base`), MuRIL (`google/muril-base-cased`); label map C=0, NC=1, R=2; seed 42; 3 epochs; lr 2e-5; batch 8; max_len 512; fp16 when CUDA. Weighted + unweighted variants.
 - Input is response text only. Gold labels never used for training.
+- **Status relative to the paper:** `classifier_final_v2` is a later, supplementary/exploratory
+  pipeline (prompt-set grouping, weighted/unweighted variants) and was not used for the
+  paper's primary classifier result. The paper-reported response-only classifier results
+  remain those from `outputs/analysis/classifier/` (XLM-R 28.57%; MuRIL 23.81%; majority
+  baseline 52.38%; COMPLIANCE F1 0.00 for both). Trained checkpoints for both pipelines are
+  excluded from the public repository (see Section 12).
 
 ## 10. Environment
 Python 3.13.15, Windows 11, RTX 4050, CUDA 12.8. Package versions in `requirements.txt`.

@@ -166,10 +166,39 @@ outputs/analysis/classifier/*
 !outputs/analysis/classifier/xlmr_gold/
 !outputs/analysis/classifier/xlmr_gold/*
 
+# Lightweight outputs of the supplementary (non-frozen) class-weighting
+# and prior-calibration diagnostic experiments: metrics/predictions
+# only, never the trained checkpoints (xlmr_balanced/, muril_balanced/
+# stay excluded by the blanket rule above).
+!outputs/analysis/classifier/BALANCED_EXPERIMENT_NOTES.md
+!outputs/analysis/classifier/xlmr_gold_balanced/
+!outputs/analysis/classifier/xlmr_gold_balanced/*
+!outputs/analysis/classifier/muril_gold_balanced/
+!outputs/analysis/classifier/muril_gold_balanced/*
+!outputs/analysis/classifier/xlmr_gold_calibrated/
+!outputs/analysis/classifier/xlmr_gold_calibrated/*
+!outputs/analysis/classifier/muril_gold_calibrated/
+!outputs/analysis/classifier/muril_gold_calibrated/*
+
 # Trained weights stay out (restated last so nothing above can
 # accidentally re-include a multi-gigabyte checkpoint).
 outputs/analysis/classifier/muril/
 outputs/analysis/classifier/xlmr/
+outputs/analysis/classifier/xlmr_balanced/
+outputs/analysis/classifier/muril_balanced/
+
+# Final V2 statistics and figures (outputs/analysis/*_final_v2),
+# referenced by REPRODUCIBILITY_FINAL_V2.md as the canonical v2
+# analysis. Same whitelist-after-blanket-ignore pattern as above.
+!outputs/analysis/statistics_final_v2/
+!outputs/analysis/statistics_final_v2/*.csv
+
+!outputs/analysis/statistics_confirmatory_final_v2/
+!outputs/analysis/statistics_confirmatory_final_v2/*.md
+!outputs/analysis/statistics_confirmatory_final_v2/*.csv
+
+!outputs/analysis/figures_final_v2/
+!outputs/analysis/figures_final_v2/*.png
 
 # ==========================================================
 # Demonstration application
