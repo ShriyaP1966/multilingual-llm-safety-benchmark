@@ -1,1 +1,0 @@
-{"root":["./src/app.tsx","./src/api.ts","./src/main.tsx","./src/components/about.tsx","./src/components/benchmark.tsx","./src/components/evaluator.tsx","./src/components/history.tsx","./src/components/methodology.tsx","./src/components/resultview.tsx","./src/lib/history.ts","./src/lib/labels.ts","./src/lib/lang.ts"],"version":"5.9.3"}

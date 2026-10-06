@@ -208,9 +208,19 @@ app/frontend/node_modules/
 app/frontend/dist/
 app/frontend/.env
 app/**/__pycache__/
+*.tsbuildinfo
 
 # Stale frontend snapshot — never publish
 app/frontend_backup_*/
+
+# ==========================================================
+# Model weight files, wherever they might appear
+# (directory-level excludes above are the primary guard;
+# this is defense-in-depth against a stray checkpoint file)
+# ==========================================================
+
+*.safetensors
+pytorch_model.bin
 
 # Preserved legacy git history from the old CLVPI_NLP repo — never publish
 .git_OLD_CLVPI_backup/
